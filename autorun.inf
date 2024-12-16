@@ -1,0 +1,4 @@
+[autorun]
+open=run.bat
+action=Run the Batch File
+icon=youricon.ico
